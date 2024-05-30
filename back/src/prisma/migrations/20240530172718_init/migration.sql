@@ -1,0 +1,14 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "firstname" TEXT NOT NULL,
+    "lastname" TEXT NOT NULL,
+    "mail" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Bid" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "bidderId" INTEGER NOT NULL,
+    CONSTRAINT "Bid_bidderId_fkey" FOREIGN KEY ("bidderId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
