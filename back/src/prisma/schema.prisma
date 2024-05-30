@@ -16,7 +16,9 @@ model User {
 }
 
 model Bid {
-  id       Int  @id @default(autoincrement())
-  bidder   User @relation(fields: [bidderId], references: [id])
-  bidderId Int
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  bidder      User   @relation(fields: [bidderId], references: [id])
+  bidderId    Int
 }
