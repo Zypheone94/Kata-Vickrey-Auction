@@ -44,7 +44,7 @@ export default function Home() {
           <div>
             {auctions &&
               auctions.map((auction, index) => (
-                <AuctionCard key={index} auctionInfo={auction} />
+                <a href={`/auctions/${auction.id}`}><AuctionCard key={index} auctionInfo={auction} /></a>
               ))}
           </div>
         </div>
