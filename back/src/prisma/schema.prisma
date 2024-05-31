@@ -16,9 +16,18 @@ model User {
 }
 
 model Bid {
-  id          Int    @id @default(autoincrement())
-  title       String
-  description String
-  bidder      User   @relation(fields: [bidderId], references: [id])
-  bidderId    Int
+  id        Int     @id @default(autoincrement())
+  amount    Float
+  bidder    User    @relation(fields: [bidderId], references: [id])
+  bidderId  Int
+  auction   Auction @relation(fields: [auctionId], references: [id])
+  auctionId Int
+}
+
+model Auction {
+  id           Int    @id @default(autoincrement())
+  title        String
+  description  String
+  reservePrice Float
+  Bid          Bid[]
 }
