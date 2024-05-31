@@ -19,9 +19,9 @@ router.post('/create', async (req, res) => {
     try {
         const newAuction = await prisma.auction.create({
             data: {
-                title: "Gameboy",
-                description: "Very old gaming système",
-                reservePrice: 100
+                title: "Guitare Ibanez",
+                description: "Une magnifique guitare de collection",
+                reservePrice: 1500
             }
         })
         res.status(201).json(newAuction)

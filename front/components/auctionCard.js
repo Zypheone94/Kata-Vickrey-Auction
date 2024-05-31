@@ -1,6 +1,6 @@
 import React from 'react'
 
-const auctionCard = ({auctionInfo}) => {
+const AuctionCard = ({auctionInfo}) => {
   return (
     <div className='border-2 border-orange-600 rounded-xl'>
         <div>
@@ -14,4 +14,4 @@ const auctionCard = ({auctionInfo}) => {
   )
 }
 
-export default auctionCard
+export default AuctionCard
