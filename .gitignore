@@ -3,5 +3,6 @@
 back/node_modules
 front/node_modules
 
+*-journal
 .DS_Store
 *.db
