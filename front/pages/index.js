@@ -3,6 +3,7 @@ import { api } from "@/utils/api";
 
 // Import components :
 
+import Header from "@/components/common/Header";
 import AuctionCard from "@/components/AuctionCard";
 
 export default function Home() {
@@ -28,7 +29,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main className="flex">
+      <Header />
       {loader ? (
         <div>Loading content...</div>
       ) : (
@@ -41,7 +43,7 @@ export default function Home() {
             </div>
           ))}
       </div> */}
-          <div>
+          <div className="flex">
             {auctions &&
               auctions.map((auction, index) => (
                 <a href={`/auctions/${auction.id}`}><AuctionCard key={index} auctionInfo={auction} /></a>
