@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
+import { api } from "@/utils/api";
+
 const AuctionPage = () => {
-    const router = useRouter();
-    const room_id = router.query.id;
+  const router = useRouter();
+  const auctionId = router.query.id;
 
-  return (
-    <div>
-        {room_id}
-    </div>
-  )
-}
+  const [auctionValue, setAuctionValue] = useState([]);
 
-export default AuctionPage
+  useEffect(() => {
+    auctionId && getAuctionData();
+  }, [auctionId]);
+
+  const getAuctionData = async () => {
+    const auctionData = await api(
+      `http://localhost:8000/auction/readAuction/${auctionId}`
+    );
+    setAuctionValue(auctionData);
+  };
+
+  return <div>{auctionValue && auctionValue.title}</div>;
+};
+
+export default AuctionPage;

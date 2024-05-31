@@ -15,6 +15,22 @@ router.get('/list', async (req, res) => {
     }
 })
 
+router.get('/readAuction/:id', async (req, res) => {
+    const auctionId = parseInt(req.params.id);
+
+    try {
+        const auctionData = await prisma.auction.findUnique({
+            where: {
+                id: auctionId
+            }
+        })
+        res.status(201).json({data: auctionData})
+    }
+    catch (error){
+        res.status(500).json({ error: 'An error occured when searching for auction' });
+    }
+})
+
 router.post('/create', async (req, res) => {
     console.log(req.body)
     try {
