@@ -25,9 +25,11 @@ model Bid {
 }
 
 model Auction {
-  id           Int    @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   title        String
   description  String
   reservePrice Float
+  createdTime  DateTime
+  expiration   DateTime
   Bid          Bid[]
 }
