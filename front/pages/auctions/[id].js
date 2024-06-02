@@ -11,6 +11,7 @@ const AuctionPage = () => {
   const auctionId = router.query.id;
 
   const [auctionValue, setAuctionValue] = useState([]);
+  const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
     auctionId && getAuctionData();
@@ -30,7 +31,7 @@ const AuctionPage = () => {
         <h1>{auctionValue.title}</h1>
         <p>{auctionValue.description}</p>
         <p>Prix de réserve : {auctionValue.reservePrice}€</p>
-        <Countdown expiration={auctionValue.expiration} />
+        <Countdown expiration={auctionValue.expiration} timeLeft={timeLeft} setTimeLeft={setTimeLeft}/>
       </div>
     </main>
   );

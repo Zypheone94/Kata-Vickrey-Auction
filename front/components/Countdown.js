@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
 
-const Countdown = ({ expiration }) => {
-  const [timeLeft, setTimeLeft] = useState("");
+const Countdown = ({ expiration, timeLeft, setTimeLeft }) => {
 
   useEffect(() => {
     const calculateTimeLeft = () => {

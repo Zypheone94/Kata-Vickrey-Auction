@@ -53,4 +53,21 @@ router.post("/create", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  const auctionId = parseInt(req.params.id);
+
+  try {
+    const deletedAuction = await prisma.auction.delete({
+      where: {
+        id: auctionId
+      }
+    })
+    res.status(201).json({ data: deletedAuction });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "An error occured when delete auction" });
+  }
+})
+
 export default router;
