@@ -11,7 +11,7 @@ model User {
   id        Int    @id @default(autoincrement())
   firstname String
   lastname  String
-  mail      String
+  mail      String @unique
   password  String
   bids      Bid[]
 }
