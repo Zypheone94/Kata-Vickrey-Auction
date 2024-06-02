@@ -47,7 +47,7 @@ router.post("/create", async (req, res) => {
         expiration: expiration,
       },
     });
-    res.status(201).json(newAuction);
+    res.status(201).json({data: newAuction});
   } catch (error) {
     res.status(500).json({ error: error });
   }

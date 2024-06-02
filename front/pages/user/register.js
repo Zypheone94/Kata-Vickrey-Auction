@@ -1,15 +1,15 @@
 import React from "react";
 
 import Header from "@/components/common/Header";
-import CreateAuction from "@/components/forms/CreateAuction";
+import CreateUser from "@/components/forms/CreateUser";
 
-const create = () => {
+const register = () => {
   return (
     <main className="flex">
       <Header />
-      <CreateAuction />
+      <CreateUser />
     </main>
   );
 };
 
-export default create;
+export default register;
