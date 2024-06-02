@@ -31,6 +31,7 @@ const CreateAuction = () => {
         <input
           type="text"
           name="title"
+          required
           onChange={handleChangeAuctionData}
           className="border-2 border-dashed"
         />
@@ -40,6 +41,7 @@ const CreateAuction = () => {
         <input
           type="text"
           name="description"
+          required
           onChange={handleChangeAuctionData}
           className="border-2 border-dashed"
         />
@@ -49,6 +51,7 @@ const CreateAuction = () => {
         <input
           type="number"
           name="reservePrice"
+          required
           onChange={handleChangeAuctionData}
           className="border-2 border-dashed number-input"
         />

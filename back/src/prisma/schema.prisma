@@ -12,6 +12,7 @@ model User {
   firstname String
   lastname  String
   mail      String
+  password  String
   bids      Bid[]
 }
 
