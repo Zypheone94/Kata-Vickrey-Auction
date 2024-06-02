@@ -3,6 +3,7 @@ import cors from "cors";
 
 import userRoute from "./routes/userRoute.js";
 import auctionRoute from "./routes/auctionRoute.js";
+import bidRoute from "./routes/bidRoute.js";
 
 const app = express();
 const port = 8000;
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", userRoute);
 app.use("/auction", auctionRoute);
+app.use("/bid", bidRoute);
 
 app.listen(port, () => {
   console.log("Serveur démarré sur le port : " + port);

@@ -21,7 +21,7 @@ const LoginUser = () => {
       "POST",
       userData
     );
-    //Router.push("/");
+    Router.push("/");
   };
 
   return (
