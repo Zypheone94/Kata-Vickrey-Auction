@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import jwt from "jsonwebtoken";
+import jwt, { decode } from "jsonwebtoken";
 
-const BidModal = ({ setShowModal }) => {
+import AddBid from "../forms/AddBid";
+
+const BidModal = ({ setShowModal, auctionId, reservePrice }) => {
   const [displayLogin, setDisplayLogin] = useState(false);
+  const [displayForm, setDisplayForm] = useState(false);
+  const [decodedJwt, setDecodedJwt] = useState(null);
   const modalRef = useRef();
 
   useEffect(() => {
@@ -10,8 +14,7 @@ const BidModal = ({ setShowModal }) => {
     if (token) {
       try {
         const decoded = jwt.verify(token, "My_secret");
-
-        // ajouter form d'envoi bid
+        setDecodedJwt(decoded);
       } catch (err) {
         console.log(err);
         setDisplayLogin(true);
@@ -20,6 +23,11 @@ const BidModal = ({ setShowModal }) => {
       setDisplayLogin(true);
     }
   }, []);
+
+  useEffect(() => {
+    decodedJwt ? setDisplayForm(true) : setDisplayForm(false);
+    console.log(decodedJwt);
+  }, [decodedJwt]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -38,7 +46,7 @@ const BidModal = ({ setShowModal }) => {
     <div className="fixed inset-0 flex items-center justify-center">
       <div className="w-1/4 h-1/2 rounded-2xl border-2 p-4" ref={modalRef}>
         Enchérire
-        {displayLogin && (
+        {displayLogin ? (
           <div className="flex flex-col items-center mt-4">
             <p className>Vous n'êtes pas authentifié</p>
             <div className="w-full flex justify-between px-8 mt-6">
@@ -50,6 +58,15 @@ const BidModal = ({ setShowModal }) => {
               </a>
             </div>
           </div>
+        ) : (
+          displayForm && (
+            <AddBid
+              auctionId={auctionId}
+              userId={decodedJwt.userId}
+              reservePrice={reservePrice}
+              setShowModal={setShowModal}
+            />
+          )
         )}
       </div>
     </div>

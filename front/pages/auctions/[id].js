@@ -22,6 +22,14 @@ const AuctionPage = () => {
     auctionId && getAuctionBidList();
   }, [auctionId]);
 
+  useEffect(() => {
+    timeLeft === "L'enchère est terminée !" && setShowModal(false);
+  }, [timeLeft]);
+
+  useEffect(() => {
+    getAuctionBidList();
+  }, [showModal]);
+
   const getAuctionData = async () => {
     const auctionData = await api(
       `http://localhost:8000/auction/readAuction/${auctionId}`
@@ -73,7 +81,13 @@ const AuctionPage = () => {
           </div>
         </div>
       </div>
-      {showModal && <BidModal setShowModal={setShowModal} />}
+      {showModal && (
+        <BidModal
+          setShowModal={setShowModal}
+          auctionId={auctionId}
+          reservePrice={auctionValue.reservePrice}
+        />
+      )}
     </main>
   );
 };
