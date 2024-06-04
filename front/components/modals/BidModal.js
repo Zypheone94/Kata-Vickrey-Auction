@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import jwt, { decode } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 import AddBid from "../forms/AddBid";
 
@@ -8,9 +8,9 @@ const BidModal = ({ setShowModal, auctionId, reservePrice }) => {
   const [displayForm, setDisplayForm] = useState(false);
   const [decodedJwt, setDecodedJwt] = useState(null);
   const modalRef = useRef();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (token) {
       try {
         const decoded = jwt.verify(token, "My_secret");
@@ -61,6 +61,7 @@ const BidModal = ({ setShowModal, auctionId, reservePrice }) => {
         ) : (
           displayForm && (
             <AddBid
+              token={token}
               auctionId={auctionId}
               userId={decodedJwt.userId}
               reservePrice={reservePrice}

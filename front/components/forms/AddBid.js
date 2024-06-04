@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import { api } from "@/utils/api";
 
-const AddBid = ({ auctionId, userId, reservePrice, setShowModal }) => {
-  const [amount, setAmount] = useState();
+const AddBid = ({ token, auctionId, userId, reservePrice, setShowModal }) => {
+  const [amount, setAmount] = useState(reservePrice + 1);
 
   const handleSubmitBid = async (e) => {
     e.preventDefault();
-    await api("http://localhost:8000/bid/add", "POST", {
-      amount: parseFloat(amount),
-      bidderId: userId,
-      auctionId: auctionId,
-    });
+    const createdTime = new Date().toISOString();
+
+    await api(
+      "http://localhost:8000/bid/add",
+      "POST",
+      {
+        amount: parseFloat(amount),
+        bidderId: parseInt(userId),
+        auctionId: parseInt(auctionId),
+        createdTime: createdTime,
+      },
+      `Bearer ${token}`
+    );
     setShowModal(false);
   };
 
