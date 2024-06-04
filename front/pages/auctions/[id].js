@@ -6,6 +6,8 @@ import { api } from "@/utils/api";
 import Header from "@/components/common/Header";
 import Countdown from "@/components/Countdown";
 
+import BidModal from "@/components/modals/BidModal";
+
 const AuctionPage = () => {
   const router = useRouter();
   const auctionId = router.query.id;
@@ -13,6 +15,7 @@ const AuctionPage = () => {
   const [auctionValue, setAuctionValue] = useState([]);
   const [bidList, setBidList] = useState([]);
   const [timeLeft, setTimeLeft] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     auctionId && getAuctionData();
@@ -34,7 +37,7 @@ const AuctionPage = () => {
   return (
     <main className="flex">
       <Header />
-      <div className="flex mt-8 ml-8 w-full">
+      <div className={`flex mt-8 ml-8 w-full ${showModal ? "blur-lg" : null}`}>
         <div className="w-1/2">
           <h1>{auctionValue.title}</h1>
           <p>{auctionValue.description}</p>
@@ -56,8 +59,21 @@ const AuctionPage = () => {
               )}
             </ul>
           </div>
+          <div>
+            {timeLeft != "L'enchère est terminée !" ? (
+              <button className="border-2" onClick={() => setShowModal(true)}>
+                Enchérire !
+              </button>
+            ) : (
+              <p>
+                Les enchère pour ce produit sont terminés, vous ne pouvez plus
+                enchérire.
+              </p>
+            )}
+          </div>
         </div>
       </div>
+      {showModal && <BidModal setShowModal={setShowModal} />}
     </main>
   );
 };

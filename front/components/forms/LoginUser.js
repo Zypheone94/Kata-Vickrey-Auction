@@ -21,6 +21,7 @@ const LoginUser = () => {
       "POST",
       userData
     );
+    localStorage.setItem('token', loggedUser);
     Router.push("/");
   };
 
