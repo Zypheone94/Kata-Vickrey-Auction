@@ -61,7 +61,13 @@ const AuctionPage = () => {
           <div>
             <ul>
               {bidList && bidList.length > 0 ? (
-                bidList.map((bid, index) => <li key={index}>{bid.amount} $</li>)
+                bidList.map((bid, index) => (
+                  <li key={index}>
+                    {bid.createdTime.split("T")[0].split("-").reverse().join("/").slice(0, -5)}{" "}
+                    {bid.createdTime.split("T")[1].split(".")[0].slice(0, -3)} | {bid.amount}{" "}
+                    $
+                  </li>
+                ))
               ) : (
                 <li>No bid for this auction!</li>
               )}

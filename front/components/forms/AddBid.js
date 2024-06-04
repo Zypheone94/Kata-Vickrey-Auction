@@ -6,8 +6,6 @@ const AddBid = ({ token, auctionId, userId, reservePrice, setShowModal }) => {
 
   const handleSubmitBid = async (e) => {
     e.preventDefault();
-    const createdTime = new Date().toISOString();
-
     await api(
       "http://localhost:8000/bid/add",
       "POST",
@@ -15,7 +13,6 @@ const AddBid = ({ token, auctionId, userId, reservePrice, setShowModal }) => {
         amount: parseFloat(amount),
         bidderId: parseInt(userId),
         auctionId: parseInt(auctionId),
-        createdTime: createdTime,
       },
       `Bearer ${token}`
     );

@@ -21,15 +21,17 @@ router.get("/list/:auctionId", async (req, res) => {
 });
 
 router.post("/add", authenticateToken, async (req, res) => {
-  const { amount, bidderId, auctionId, createdTime } = req.body;
-  console.log(req.body);
+  const { amount, bidderId, auctionId } = req.body;
+  const x = new Date().getTimezoneOffset() * 60000;
+  const localISOTime = new Date(Date.now() - x).toISOString();
+  console.log(localISOTime)
   try {
     const newBid = await prisma.bid.create({
       data: {
         amount: parseFloat(amount),
         bidderId: parseInt(bidderId),
         auctionId: parseInt(auctionId),
-        createdTime: createdTime,
+        createdTime: localISOTime,
       },
     });
     return res.status(200).json({ data: newBid });
