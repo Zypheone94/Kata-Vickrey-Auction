@@ -15,7 +15,6 @@ export const api = async (apiRoad, method = "GET", data = {}, auth = null) => {
   try {
     const response = await fetch(`${apiRoad}`, requestOptions);
     const jsonResponse = await response.json();
-    console.log(jsonResponse.data);
     return jsonResponse.data;
   } catch (error) {
     throw error;

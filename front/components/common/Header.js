@@ -1,6 +1,10 @@
 import React from "react";
 
 const Header = () => {
+  const logout = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <header className="h-screen w-2/12 bg-base">
       <div>
@@ -16,6 +20,9 @@ const Header = () => {
           </li>
           <li className="mt-6">
             <a href="/user/login">Login</a>
+          </li>
+          <li className="mt-6" onClick={logout}>
+            Disconnect
           </li>
         </ul>
       </nav>
